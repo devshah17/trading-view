@@ -67,7 +67,7 @@ export async function GET(req: NextRequest) {
       interval: tfConfig.interval
     }, { validateResult: false })
     
-    const candles = (result.quotes as any[])
+    const candles = ((result as any).quotes as any[])
       .filter((c: any) => c.open != null && c.high != null && c.low != null && c.close != null)
       .map((c: any) => ({
         timestamp: Math.floor(c.date.getTime() / 1000),
