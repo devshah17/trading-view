@@ -138,6 +138,7 @@ a:hover { color: var(--accent-hover); }
   display: flex;
   flex: 1;
   overflow: hidden;
+  background: var(--bg-base);
 }
 
 /* Sidebars */
@@ -267,22 +268,38 @@ a:hover { color: var(--accent-hover); }
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: rgba(0,0,0,0.6);
+  background: rgba(11, 11, 13, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   padding-top: 80px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .symbol-search-box {
   width: 560px;
   max-height: 480px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-strong);
+  background: rgba(24, 24, 28, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transform: translateY(-10px);
+  animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDown {
+  to { transform: translateY(0); }
 }
 
 .symbol-search-input-row {
@@ -904,6 +921,129 @@ a:hover { color: var(--accent-hover); }
 }
 
 .data-table th:hover { color: var(--text-secondary); }
+
+.performance-table th, .performance-table td {
+  padding: 6px 10px;
+  text-align: right;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.82rem;
+}
+.performance-table th {
+  color: var(--text-muted);
+  font-weight: 500;
+  text-align: right;
+}
+.performance-table td:first-child, .performance-table th:first-child {
+  text-align: left;
+}
+
+/* ============================================================
+   FUNDAMENTALS & INSTRUMENT DETAILS
+   ============================================================ */
+
+.instrument-details-container {
+  padding: 24px;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  min-height: 250px;
+  flex-shrink: 0;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.details-section h3 {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.details-section h3::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.business-summary {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.meta-info {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.meta-info a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.2s;
+}
+
+.meta-info a:hover {
+  text-decoration-color: var(--accent);
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stats-table td {
+  padding: 8px 0;
+  font-size: 0.82rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.stats-table td:first-child {
+  color: var(--text-secondary);
+}
+
+.stats-table td:last-child {
+  text-align: right;
+  color: var(--text-primary);
+}
+
+.skeleton-pulse {
+  background: linear-gradient(90deg, var(--bg-elevated) 25%, var(--bg-highlight) 50%, var(--bg-elevated) 75%);
+  background-size: 400% 100%;
+  animation: pulse 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes pulse {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 .data-table td {
   padding: 7px 12px;
